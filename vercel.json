@@ -1,0 +1,5 @@
+{
+  "cleanUrls": true,
+  "functions": { "api/payout.js": { "maxDuration": 60 }, "api/pot.js": { "maxDuration": 20 }, "api/winner.js": { "maxDuration": 30 } },
+  "headers": [{ "source": "/(.*)", "headers": [{ "key": "x-content-type-options", "value": "nosniff" }, { "key": "referrer-policy", "value": "strict-origin-when-cross-origin" }] }]
+}
