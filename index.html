@@ -203,11 +203,164 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
 @media (max-width:820px){nav .links{position:fixed;top:62px;left:0;right:0;flex-direction:column;background:rgba(6,19,23,.97);padding:10px var(--pad) 18px;border-bottom:1px solid var(--line);display:none}nav .links.open{display:flex}nav .links a{padding:12px 10px;font-size:15px}.menu{display:block}nav .clock{display:none}nav [data-buy]{margin-left:auto}}
 @media (max-width:560px){.steps{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,1fr)}.strip .stat{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)}.strip .stat:nth-child(2n){border-right:0!important}.rules{grid-template-columns:1fr}.hud div:nth-child(3){display:none}.hero h1{font-size:clamp(96px,28vw,150px)}.ca{max-width:calc(100vw - 32px)}.board .nm small{max-width:42vw}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+/* ---------- v2 polish ---------- */
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+::selection{background:var(--lime);color:#0b2410}
+.crest{display:inline-block;flex:none;vertical-align:middle;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
+/* intro */
+#intro{position:fixed;inset:0;z-index:80;background:#05141a;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity .6s ease,transform .7s cubic-bezier(.7,0,.2,1)}
+#intro.out{opacity:0;transform:translateY(-4%)}
+#intro .in{display:flex;flex-direction:column;align-items:center;gap:22px}
+#intro .wm{font-size:clamp(64px,10vw,110px);text-shadow:4px 4px 0 #0a2b2f,0 0 40px rgba(198,255,61,.3);animation:ipop .5s cubic-bezier(.2,1.6,.4,1) both}
+#intro .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;width:min(240px,60vw);transform:rotateX(55deg) rotateZ(45deg);margin:-20px 0}
+#intro .grid i{aspect-ratio:1;border-radius:2px;opacity:0;animation:icell .35s ease-out both}
+#intro .cap{font:700 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+@keyframes ipop{from{transform:scale(.6);opacity:0}}
+@keyframes icell{from{opacity:0;transform:translateY(-14px) scale(.4)}to{opacity:1;transform:none}}
+/* section numbers */
+section[data-n]:before{content:attr(data-n);position:absolute;right:max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)));top:clamp(40px,7vw,80px);font:900 clamp(120px,17vw,230px)/1 var(--sans);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px rgba(190,255,230,.07);pointer-events:none;z-index:0}
+section>.wrap{position:relative;z-index:1}
+h2{background:linear-gradient(180deg,#fff8ea 30%,#cfe3da);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2 .lime{color:var(--lime);-webkit-text-fill-color:var(--lime)}
+.eyebrow:before{content:"";display:inline-block;width:18px;height:2px;background:currentColor;vertical-align:middle;margin:-2px 10px 0 0}
+.cta .eyebrow:before{display:none}
+/* cards */
+.card,.step,.feedbox,.board li,.faq details{position:relative}
+.card:after,.step:after,.feedbox:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 40%);}
+.card,.step{transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{border-color:var(--line2);box-shadow:0 20px 50px -30px rgba(198,255,61,.25)}
+.step:hover{box-shadow:0 24px 50px -28px rgba(198,255,61,.3)}
+.step svg{filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));transition:transform .3s}
+.step:hover svg{transform:translateY(-3px) scale(1.04)}
+.pill.lime:hover{box-shadow:3px 3px 0 #23400a,0 0 30px rgba(198,255,61,.45)}
+.pill.cream:hover{box-shadow:3px 3px 0 #03191b,0 0 26px rgba(253,244,227,.3)}
+.pill.ghost:hover{border-color:var(--ink)}
+/* map frame */
+.lcol{display:flex;flex-direction:column;gap:14px;min-width:0}
+.mapbox{box-shadow:0 40px 90px -50px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.04)}
+.mapbox:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 50% at 50% 55%,rgba(198,255,61,.07),transparent 70%)}
+.mapbox .cn{position:absolute;width:16px;height:16px;border-color:rgba(198,255,61,.5);border-style:solid;pointer-events:none}
+.cn.tl{left:10px;top:52px;border-width:2px 0 0 2px}.cn.tr2{right:10px;top:52px;border-width:2px 2px 0 0}.cn.bl2{left:10px;bottom:10px;border-width:0 0 2px 2px}.cn.br{right:10px;bottom:10px;border-width:0 2px 2px 0}
+.mapbox .legend{position:absolute;left:0;right:0;bottom:14px;text-align:center;font:600 11px var(--mono);color:var(--dim);pointer-events:none}
+.mapbox .tip{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;line-height:1.5}
+.mapbox .tip .crest{grid-row:span 3}
+/* board */
+.board .nm b .crest{margin-right:-1px}
+.crown{font:800 10px var(--mono);color:#ffe14d;background:rgba(255,225,77,.1);border:1px solid rgba(255,225,77,.35);padding:2px 7px;border-radius:999px;letter-spacing:.02em}
+.board li.king{box-shadow:0 0 0 1px rgba(198,255,61,.15),0 14px 40px -20px rgba(198,255,61,.35)}
+/* feed */
+.feedbox{background:var(--p1);border:1px solid var(--line);border-radius:22px;padding:14px 16px 6px;overflow:hidden}
+.feedbox .fh{display:flex;justify-content:space-between;gap:10px;font:700 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.feedbox .fh span:first-child{color:var(--ink);display:flex;align-items:center;gap:8px}
+#feed{list-style:none;margin:0;padding:0;max-height:212px;overflow:auto;scrollbar-width:thin;scrollbar-color:var(--p3) transparent}
+#feed li{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--mute)}
+#feed li:last-child{border-bottom:0}
+#feed li span{flex:1;min-width:0}
+#feed li b{color:var(--ink)}
+#feed li time{font:600 11px var(--mono);color:var(--dim);white-space:nowrap}
+#feed li.up span b:last-of-type{color:var(--lime)}
+#feed li.dn span b:nth-of-type(2){color:var(--pink)}
+#feed li.k{color:#ffe14d}#feed li.k b{color:#ffe14d}
+#feed li.sep{font:700 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lime);padding:10px 2px 6px}
+#feed li.quiet{font:600 12.5px var(--mono);color:var(--dim);padding:16px 2px}
+#feed li.fresh{animation:fin .6s ease both}
+@keyframes fin{from{background:rgba(198,255,61,.14);transform:translateX(-6px);opacity:0}to{background:transparent}}
+/* lookup */
+.res .top .crest{filter:drop-shadow(0 4px 0 rgba(0,0,0,.35)) drop-shadow(0 0 18px rgba(198,255,61,.15))}
+.acts2{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.tbl a.gl{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.tbl a.gl:hover{color:var(--lime)}
+.tape .run .crest{filter:none}
+/* countdown */
+.cd{display:flex;justify-content:center;align-items:flex-start;gap:clamp(6px,1.4vw,16px);margin:18px 0 10px}
+.cd div{min-width:clamp(64px,10vw,120px);padding:clamp(10px,1.6vw,18px) 8px;border-radius:18px;background:linear-gradient(180deg,#10302f,#0a1f22);border:1px solid var(--line2);box-shadow:0 18px 40px -24px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+.cd b{display:block;font:900 clamp(36px,6.4vw,78px)/1 var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.cd b.tk{animation:tk .35s ease}
+@keyframes tk{from{transform:translateY(-6px);opacity:.3}}
+.cd span{display:block;margin-top:6px;font:700 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.cd i{font:900 clamp(26px,4vw,52px)/1 var(--sans);color:var(--lime);font-style:normal;padding-top:clamp(12px,2vw,24px)}
+.cdk{font:700 13px var(--mono);color:var(--mute);margin-bottom:34px}.cdk b{color:var(--lime)}
+.cta{padding-bottom:clamp(150px,18vw,220px)}
+@media (max-width:560px){.cd div{min-width:0;flex:1}.cd i{display:none}.cd{gap:6px}.feedbox .fh span:last-child{display:none}section[data-n]:before{font-size:96px}}
+@media (prefers-reduced-motion:reduce){#intro{display:none}}
+/* ---------- v3: motion + polish ---------- */
+#amb{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
+.hero,.tape,.strip,section,footer,.band{position:relative}
+nav{transition:background .35s,border-color .35s,transform .4s cubic-bezier(.2,.8,.2,1)}
+nav.tuck{transform:translateY(-100%)}
+.prog{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--lime),var(--cyan));transform-origin:0 50%;transform:scaleX(0);box-shadow:0 0 12px rgba(198,255,61,.6)}
+#ring{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:1.5px solid rgba(198,255,61,.65);pointer-events:none;z-index:90;transition:width .2s,height .2s,margin .2s,background .2s,opacity .2s,border-color .2s;mix-blend-mode:screen}
+#ring.big{width:58px;height:58px;margin:-29px 0 0 -29px;background:rgba(198,255,61,.08);border-color:var(--lime)}
+#ring.down{width:26px;height:26px;margin:-13px 0 0 -13px}
+#ring.off{opacity:0}
+.pill{position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .15s}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(1);opacity:0}}
+/* split headings */
+h2.split{background:none;-webkit-text-fill-color:initial;color:var(--ink)}
+h2 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
+h2 .w>span{display:inline-block;background:linear-gradient(180deg,#fff8ea 30%,#cfe3da);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:transform .9s cubic-bezier(.2,.85,.2,1) calc(var(--i)*55ms + 80ms)}
+h2 .w>span .lime{-webkit-text-fill-color:var(--lime)}
+.rv h2 .w>span{transform:translateY(112%)}
+.rv.vis h2 .w>span{transform:none}
+/* hero wire */
+.wire{position:absolute;left:50%;bottom:80px;transform:translate(-50%,14px);display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);padding:8px 16px 8px 10px;border-radius:999px;background:rgba(6,19,23,.85);border:1px solid rgba(198,255,61,.35);box-shadow:0 0 30px rgba(198,255,61,.18);font:600 13px var(--sans);color:var(--mute);opacity:0;transition:opacity .4s,transform .5s cubic-bezier(.2,1.4,.4,1);pointer-events:none;white-space:nowrap}
+.wire span{overflow:hidden;text-overflow:ellipsis}
+.wire b{color:var(--ink)}
+.wire.show{opacity:1;transform:translate(-50%,0)}
+.wire:before{content:"LIVE";font:800 10px var(--mono);letter-spacing:.12em;color:#0b2410;background:var(--lime);border-radius:999px;padding:3px 7px}
+/* band */
+.band{overflow:hidden;padding:clamp(26px,4vw,46px) 0;border-top:1px solid var(--line);background:var(--bg);display:grid;gap:6px}
+.band .row{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);white-space:nowrap;will-change:transform;font:900 clamp(40px,7vw,96px)/1 var(--sans);letter-spacing:-.05em;width:max-content}
+.band .row span{color:var(--ink)}
+.band .row.rev span{color:transparent;-webkit-text-stroke:1.5px rgba(190,255,230,.35)}
+.band .row.rev span[style]{-webkit-text-stroke:0;opacity:.95}
+.band .row i{font-style:normal;color:var(--lime);font-size:.5em}
+/* how: rail + explainer */
+.how2{display:grid;grid-template-columns:1fr 1.05fr;gap:28px;margin-top:40px;align-items:start}
+.rail{display:flex;flex-direction:column;gap:10px;position:relative}
+.rail:before{content:"";position:absolute;left:31px;top:30px;bottom:30px;width:2px;background:linear-gradient(var(--line2),var(--line2))}
+.st{display:grid;grid-template-columns:44px 1fr;gap:16px;text-align:left;padding:20px 22px 20px 12px;border-radius:20px;border:1px solid transparent;background:transparent;transition:background .3s,border-color .3s;position:relative}
+.st .n{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:800 12px var(--mono);color:var(--dim);background:var(--p1);border:1.5px solid var(--line2);position:relative;z-index:1;transition:.3s}
+.st h3{transition:color .3s;color:var(--mute)}
+.st p{margin:0;color:var(--dim);font-size:14.5px;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s,margin .4s}
+.st p b{color:var(--ink)}
+.st.on{background:var(--bg);border-color:var(--line2);box-shadow:0 24px 50px -30px rgba(0,0,0,.8)}
+.st.on .n{background:var(--lime);color:#0b2410;border-color:var(--lime);box-shadow:0 0 22px rgba(198,255,61,.5)}
+.st.on h3{color:var(--ink)}
+.st.on p{max-height:120px;opacity:1;color:var(--mute);margin-top:2px}
+.st:hover h3{color:var(--ink)}
+.expl{position:sticky;top:90px;border-radius:26px;border:1px solid var(--line);background:radial-gradient(120% 90% at 50% 40%,#0f3036 0%,#081a1e 60%,#061317 100%);overflow:hidden;box-shadow:0 40px 90px -50px rgba(0,0,0,.8)}
+#explcv{display:block;width:100%;aspect-ratio:1.15}
+.ebar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-top:1px solid var(--line);font:700 12.5px var(--mono);color:var(--mute)}
+.edots{display:flex;gap:6px}
+.edots i{width:22px;height:4px;border-radius:4px;background:var(--p3);transition:background .3s}
+.edots i.on{background:var(--lime)}
+/* card light */
+.card:after,.feedbox:after,.st:after,.faq details:after,.mapbox:after,.expl:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--gx,-600px) var(--gy,-600px),rgba(198,255,61,.075),transparent 45%),linear-gradient(180deg,rgba(255,255,255,.045),transparent 40%)}
+.faq details{position:relative;overflow:hidden}
+[data-tilt]{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .25s;will-change:transform}
+/* faq two columns */
+.faqg{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+.fside{position:sticky;top:100px}
+.faqg .faq{margin-top:8px;max-width:none}
+.faq summary{transition:color .2s}.faq summary:hover{color:var(--lime)}
+/* footer big word */
+footer{overflow:hidden;padding-top:0}
+.bigword{font:900 clamp(120px,31vw,460px)/.78 var(--sans);letter-spacing:-.02em;text-align:center;margin:clamp(20px,4vw,50px) 0 clamp(26px,4vw,46px);color:transparent;background:linear-gradient(100deg,#0f2b2d 0%,#0f2b2d 38%,#c6ff3d 50%,#0f2b2d 62%,#0f2b2d 100%);background-size:300% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;transition:background-position 2.6s cubic-bezier(.2,.8,.2,1),letter-spacing 1.6s cubic-bezier(.2,.8,.2,1);user-select:none}
+.bigword.on{background-position:0 0;letter-spacing:-.065em}
+@media (max-width:1020px){.how2,.faqg{grid-template-columns:1fr}.expl,.fside{position:relative;top:0}.expl{order:-1}}
+@media (max-width:560px){.wire{bottom:74px;font-size:12px}.st{padding:16px 14px 16px 6px}.rail:before{left:25px}}
+@media (prefers-reduced-motion:reduce){#ring,#amb{display:none}.rv h2 .w>span{transform:none}}
+.st:not(.on):after{background:radial-gradient(420px circle at var(--gx,-600px) var(--gy,-600px),rgba(198,255,61,.05),transparent 45%)}
+#explcv{aspect-ratio:1.3}
+.bigword{background-image:linear-gradient(100deg,#133638 0%,#133638 38%,#c6ff3d 50%,#133638 62%,#133638 100%)}
 
 </style>
 </head>
 <body data-page="home">
-<nav id="nav"><div class="wrap">
+<div id="intro" aria-hidden="true"><div class="in"><div class="wm">turf</div><div class="grid" id="introgrid"></div><div class="cap">counting the blocks…</div></div></div>
+<nav id="nav"><i class="prog" id="prog"></i><div class="wrap">
  <a class="logo wm" href="/">turf</a>
  <div class="links" id="links"><a href="#map">the map</a><a href="#how">how it works</a><a href="#lookup">your coin</a><a href="#pot">the pot</a><a href="#rules">rules</a><a href="#faq">faq</a><a href="/pot">pot room</a></div>
  <div class="clock" title="the week closes sunday 23:59:59 UTC"><i class="dot"></i>closes <b data-k="clock">—</b></div>
@@ -226,6 +379,7 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
    <a class="pill ghost" href="#map">see the map</a>
   </div>
  </div>
+ <div class="wire" id="wire" aria-live="polite"></div>
  <div class="hud">
   <div><i class="dot"></i>week closes <b data-k="clock2">—</b></div>
   <div>king <i class="chip" data-k-chip="king"></i><b data-k="king">—</b></div>
@@ -244,16 +398,21 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
  <div class="stat"><div class="k">last week</div><div class="v" data-k="s-last">—</div><div class="s" data-k="s-lasts">sunday's winner</div></div>
 </div>
 
-<section id="map"><div class="wrap">
+<section id="map" data-n="01"><div class="wrap">
  <div class="rv"><div class="eyebrow">01 · the map</div>
  <h2>144 blocks. 12 gangs.<br>one king.</h2>
  <p class="lead">the 12 busiest pump.fun coins are on the map. every block is a slice of their combined 24h volume, recounted every minute. hover the city to see who runs it.</p></div>
  <div class="war">
+  <div class="lcol">
   <div class="mapbox rv" id="mapbox">
    <canvas id="mapcv" aria-label="the turf map"></canvas>
    <div class="bar"><span data-k="mapup">reading the streets…</span><span>144 blocks</span></div>
    <div class="tip" id="tip"></div>
    <div class="empty">the map is unavailable right now.<br>it comes back on its own.</div>
+   <i class="cn tl"></i><i class="cn tr2"></i><i class="cn bl2"></i><i class="cn br"></i>
+   <div class="legend">hover a block · tap a gang to look it up</div>
+  </div>
+  <div class="feedbox rv"><div class="fh"><span><i class="dot"></i>street feed</span><span>blocks changing hands</span></div><ol id="feed"><li class="quiet">watching the streets…</li></ol></div>
   </div>
   <div class="rv">
    <ol class="board" id="board"><li class="skel"></li><li class="skel"></li><li class="skel"></li><li class="skel"></li><li class="skel"></li></ol>
@@ -263,26 +422,21 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
  </div>
 </div></section>
 
-<section id="how" style="background:var(--p1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+<section id="how" data-n="02" style="background:var(--p1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
  <div class="rv"><div class="eyebrow">02 · how it works</div>
  <h2>run the streets.<br>take the pot.</h2></div>
- <div class="steps">
-  <div class="step rv" style="background:var(--bg)"><div class="n">01</div>
-   <svg width="64" height="56" viewBox="0 0 64 56"><path d="M32 4 58 18 32 32 6 18Z" fill="#c6ff3d"/><path d="M6 18 32 32v20L6 38Z" fill="#7fae1f"/><path d="M58 18 32 32v20l26-14Z" fill="#577a12"/></svg>
-   <h3>every coin is a gang</h3><p>the <b>12 busiest pump.fun coins</b> by 24h volume hold the city. no sign-up. trade it up and your coin walks in.</p></div>
-  <div class="step rv" style="background:var(--bg)"><div class="n">02</div>
-   <svg width="64" height="56" viewBox="0 0 64 56"><rect x="6" y="30" width="14" height="22" rx="2" fill="#ff4d8d"/><rect x="25" y="14" width="14" height="38" rx="2" fill="#c6ff3d"/><rect x="44" y="24" width="14" height="28" rx="2" fill="#36d6ff"/></svg>
-   <h3>volume takes blocks</h3><p><b>144 blocks</b>, split by each gang's share of the map's 24h volume. recounted every minute. buys and sells both count.</p></div>
-  <div class="step rv" style="background:var(--bg)"><div class="n">03</div>
-   <svg width="64" height="56" viewBox="0 0 64 56"><circle cx="32" cy="29" r="22" fill="none" stroke="#fdf4e3" stroke-width="5"/><path d="M32 16v14l9 6" stroke="#c6ff3d" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
-   <h3>sunday decides</h3><p>the week closes <b>sunday 23:59:59 UTC</b>. the gang with the most volume on sunday, the most blocks at the close, is king.</p></div>
-  <div class="step rv" style="background:var(--bg)"><div class="n">04</div>
-   <svg width="64" height="56" viewBox="0 0 64 56"><ellipse cx="32" cy="40" rx="22" ry="8" fill="#577a12"/><rect x="10" y="22" width="44" height="18" fill="#7fae1f"/><ellipse cx="32" cy="22" rx="22" ry="8" fill="#c6ff3d"/></svg>
-   <h3>the pot pays</h3><p>the pot is <b>$TURF's creator fees</b>. it pays wallets holding $TURF that also hold the winning coin, split by $TURF bag.</p></div>
+ <div class="how2">
+  <div class="rail" id="rail">
+   <button class="st on" data-s="0"><span class="n">01</span><span><h3>every coin is a gang</h3><p>the <b>12 busiest pump.fun coins</b> by 24h volume hold the city. no sign-up. trade it up and your coin walks in.</p></span></button>
+   <button class="st" data-s="1"><span class="n">02</span><span><h3>volume takes blocks</h3><p><b>144 blocks</b>, split by each gang's share of the map's 24h volume. recounted every minute. buys and sells both count.</p></span></button>
+   <button class="st" data-s="2"><span class="n">03</span><span><h3>sunday decides</h3><p>the week closes <b>sunday 23:59:59 UTC</b>. the gang with the most volume on sunday, the most blocks at the close, is king.</p></span></button>
+   <button class="st" data-s="3"><span class="n">04</span><span><h3>the pot pays</h3><p>the pot is <b>$TURF's creator fees</b>. it pays wallets holding $TURF that also hold the winning coin, split by $TURF bag.</p></span></button>
+  </div>
+  <div class="expl rv"><canvas id="explcv" aria-label="the city acting out each step"></canvas><div class="ebar"><span id="explcap">—</span><span class="edots"><i class="on"></i><i></i><i></i><i></i></span></div></div>
  </div>
 </div></section>
 
-<section id="lookup"><div class="wrap">
+<section id="lookup" data-n="03"><div class="wrap">
  <div class="rv"><div class="eyebrow">03 · your coin</div>
  <h2>is your gang<br>on the map?</h2>
  <p class="lead">paste any pump.fun contract address. see its 24h volume, its blocks, and what it takes to walk in.</p></div>
@@ -304,7 +458,9 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
  </div>
 </div></section>
 
-<section id="pot" style="background:var(--p1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+<div class="band" aria-hidden="true"><div class="row" data-v="1"><span>every coin is a gang</span><i>✦</i><span>volume takes the blocks</span><i>✦</i><span>sunday takes the pot</span><i>✦</i><span>144 blocks · 12 gangs · one king</span><i>✦</i></div><div class="row rev" data-v="-1" id="bandgangs"><span>the busiest pump.fun coins</span><i>✦</i><span>recounted every minute</span><i>✦</i></div></div>
+
+<section id="pot" data-n="04" style="background:var(--p1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
  <div class="rv"><div class="eyebrow">04 · the pot</div>
  <h2>the city pays<br>its king.</h2>
  <p class="lead">every $TURF trade pays creator fees into the pot wallet. each week the pot goes to $TURF holders who stood with the winning gang.</p></div>
@@ -331,7 +487,7 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
  </div>
 </div></section>
 
-<section id="rules"><div class="wrap">
+<section id="rules" data-n="05"><div class="wrap">
  <div class="rv"><div class="eyebrow">05 · the rules</div>
  <h2>numbers, not vibes.</h2></div>
  <div class="rules rv">
@@ -344,25 +500,29 @@ footer .fine{width:100%;font:600 11.5px var(--mono);color:var(--dim);margin-top:
  </div>
 </div></section>
 
-<section id="faq" style="padding-top:0"><div class="wrap">
- <div class="rv"><div class="eyebrow">06 · faq</div><h2>questions.</h2></div>
- <div class="faq">
+<section id="faq" data-n="06" style="padding-top:0"><div class="wrap">
+ <div class="faqg">
+  <div class="fside rv"><div class="eyebrow">06 · faq</div><h2>questions.</h2><p class="lead">everything on turf reads public data. if a number can't be read, it shows "—".</p><div class="acts2" style="margin-top:22px"><a class="pill cream sm" href="/pot">open the pot room</a><a class="pill ghost sm" href="#rules">the rules</a></div></div>
+  <div class="faq">
   <details class="rv"><summary>do coins need to sign up?</summary><p>no. the map reads public pool data. any pump.fun coin that makes the top 12 by 24h volume is on it, whether it knows or not.</p></details>
   <details class="rv"><summary>where do the numbers come from?</summary><p>GeckoTerminal's public pool data for pump.fun's bonding curve and PumpSwap. each coin counts its busiest pool. last week's winner comes from daily candles, so anyone can check it.</p></details>
   <details class="rv"><summary>who gets the pot?</summary><p>wallets that hold at least the $TURF floor and at least the floor in dollars of the winning coin. the pot splits by $TURF bag across the top 180, and cuts under ◎0.001 are dropped.</p></details>
   <details class="rv"><summary>when is it paid?</summary><p>after the sunday close. the pot wallet signs the payout in batches from the pot room. every transfer shows on the pot's ledger with its transaction.</p></details>
   <details class="rv"><summary>can it rug the pot?</summary><p>the pot is a normal wallet and every move is public on the pot room ledger. there are no keys on this site: payouts are signed in the pot wallet's own app.</p></details>
   <details class="rv"><summary>is $TURF a gang too?</summary><p>yes. if $TURF trades hard enough to make the top 12, it fights for blocks like everyone else.</p></details>
+  </div>
  </div>
 </div></section>
 
 <section class="cta"><canvas id="ctaart" aria-hidden="true"></canvas><div class="wrap rv">
- <div class="eyebrow">the week is open</div>
+ <div class="eyebrow">the week closes in</div>
+ <div class="cd"><div><b data-cd="d">—</b><span>days</span></div><i>:</i><div><b data-cd="h">—</b><span>hours</span></div><i>:</i><div><b data-cd="m">—</b><span>min</span></div><i>:</i><div><b data-cd="s">—</b><span>sec</span></div></div>
+ <div class="cdk">king right now: <b data-k="cd-king">—</b></div>
  <h2>pick a gang.<br><span class="lime">take the city.</span></h2>
  <div class="acts"><a class="pill lime" data-buy href="#" aria-disabled="true" target="_blank" rel="noopener">buy $TURF</a><a class="pill ghost" href="#map">see the map</a></div>
 </div></section>
 
-<footer><div class="wrap">
+<footer><div class="bigword" id="bigword" aria-hidden="true">turf</div><div class="wrap">
  <div><div class="wm">turf</div><div style="margin-top:8px">every coin is a gang. volume takes the blocks.</div></div>
  <div class="fl"><a href="#map">the map</a><a href="#how">how it works</a><a href="#pot">the pot</a><a href="/pot">pot room</a><a data-chart href="#" target="_blank" rel="noopener">$TURF chart</a></div>
  <div class="fine">not financial advice. memecoins can go to zero. data from GeckoTerminal, DexScreener and Solana.</div>
@@ -441,7 +601,8 @@ function closesAt(now){ var d = new Date(now), day = d.getUTCDay(), base = Date.
 function weekStart(now){ return closesAt(now) - 7 * 86400000 + 1000; }
 function clockStr(ms, longf){ var s = Math.max(0, Math.floor(ms / 1000)), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
   return longf ? (d ? d + "d " : "") + pad2(h) + ":" + pad2(m) + ":" + pad2(x) : (d ? d + "d " + h + "h" : h ? h + "h " + m + "m" : m + "m " + x + "s"); }
-function clock(){ var left = closesAt(Date.now()) - Date.now(); setK("clock", clockStr(left, true)); setK("clock2", clockStr(left, true)); setK("s-close", clockStr(left, false)); }
+function clock(){ var left = closesAt(Date.now()) - Date.now(), sl = Math.max(0, Math.floor(left / 1000));
+  [["d", Math.floor(sl / 86400)], ["h", Math.floor(sl % 86400 / 3600)], ["m", Math.floor(sl % 3600 / 60)], ["s", sl % 60]].forEach(function(p){ $$("[data-cd=\"" + p[0] + "\"]").forEach(function(e){ var v = pad2(p[1]); if (e.textContent !== v) { e.textContent = v; e.classList.remove("tk"); void e.offsetWidth; e.classList.add("tk"); } }); }); setK("clock", clockStr(left, true)); setK("clock2", clockStr(left, true)); setK("s-close", clockStr(left, false)); }
 
 /* ---------- base58 + the payout transaction ---------- */
 var A58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -545,6 +706,13 @@ function draw(t){
     for (q = 6; q >= 0; q--) { u = q / 6; c.lineTo(x + s * 1.25 * u, y - s * 1.45 + Math.sin(u * 3.2 + t * 4 + f.ph) * s * 0.12); }
     c.closePath(); c.fill();
   });
+  // the live gangs tag their roofs: the first roof of each colour carries that gang's name
+  var gg = ST.board && ST.board.gangs, tagged = {};
+  if (gg && gg.length) { c.font = "800 " + Math.round(11 * Math.max(0.85, k)) + "px JetBrains Mono, monospace"; c.textAlign = "center"; c.textBaseline = "middle";
+    ROOFS.forEach(function(f){ if (tagged[f.k] || !gg[f.k] || f.k > 4) return; tagged[f.k] = 1;
+      var x = f.x + ox + 15 * k * 0.6, y = f.y - 15 * k * 2.1 - 13 + Math.sin(t * 1.6 + f.ph) * 1.5, lab = "$" + gg[f.k].sym, lw = c.measureText(lab).width + 14, col = gangCol(f.k);
+      c.fillStyle = "rgba(6,19,23,.82)"; c.beginPath(); if (c.roundRect) c.roundRect(x - lw / 2, y - 9, lw, 18, 9); else c.rect(x - lw / 2, y - 9, lw, 18); c.fill();
+      c.strokeStyle = rgba(col, 0.55); c.lineWidth = 1; c.stroke(); c.fillStyle = col; c.fillText(lab, x, y + 1); }); }
   c.globalCompositeOperation = "lighter";
   TRAILS.forEach(function(tr){ var g = c.createLinearGradient(tr.x, 0, tr.x + tr.len * (tr.v > 0 ? -1 : 1), 0); g.addColorStop(0, rgba(tr.col, 0.9)); g.addColorStop(1, rgba(tr.col, 0)); c.fillStyle = g; c.fillRect(Math.min(tr.x, tr.x + tr.len * (tr.v > 0 ? -1 : 1)), tr.y, tr.len, 2.5); });
   c.globalCompositeOperation = "source-over";
@@ -642,6 +810,7 @@ function mapDraw(){
     var lab = "$" + gangs[k].sym; c.font = "800 " + Math.max(10, Math.round(th * 0.42)) + "px JetBrains Mono, monospace"; var lw = c.measureText(lab).width + 14, ly = fy - s * 2.6 - 16;
     c.fillStyle = "rgba(6,19,23,.86)"; c.beginPath(); if (c.roundRect) c.roundRect(fx - lw / 2, ly - 10, lw, 20, 10); else c.rect(fx - lw / 2, ly - 10, lw, 20); c.fill();
     c.strokeStyle = rgba(col, 0.6); c.lineWidth = 1; c.stroke(); c.fillStyle = col; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(lab, fx, ly + 1);
+    if (k === 0) { var cy0 = ly - 22 + Math.sin(now / 420) * 2, cs = 9; c.fillStyle = "#ffe14d"; c.beginPath(); c.moveTo(fx - cs, cy0 + cs * 0.7); c.lineTo(fx - cs, cy0 - cs * 0.3); c.lineTo(fx - cs * 0.45, cy0 + cs * 0.15); c.lineTo(fx, cy0 - cs * 0.7); c.lineTo(fx + cs * 0.45, cy0 + cs * 0.15); c.lineTo(fx + cs, cy0 - cs * 0.3); c.lineTo(fx + cs, cy0 + cs * 0.7); c.closePath(); c.fill(); c.shadowBlur = 0; if (!RM && MAP.vis) busy = true; }
   }
   if (busy && !RM) { if (!MAP.run) MAP.run = requestAnimationFrame(function(){ MAP.run = 0; mapDraw(); }); } else MAP.run = 0;
 }
@@ -662,19 +831,104 @@ function mapUpdate(){
 }
 function intro(){ var now = performance.now(), N = MAP.N; for (var i = 0; i < N * N; i++) { var ci = i % N, cj = (i / N) | 0; MAP.born[i] = RM ? 0 : now + Math.hypot(ci - 5.5, cj - 5.5) * 55 + Math.random() * 90; } mapDraw(); }
 if (mcv) {
+  if ("IntersectionObserver" in window) new IntersectionObserver(function(es){ var was = MAP.vis; MAP.vis = es[0].isIntersecting; if (MAP.vis && !was) mapDraw(); }).observe(mcv); else MAP.vis = true;
   if ("IntersectionObserver" in window) new IntersectionObserver(function(es){ if (es[0].isIntersecting && !MAP.seen) { MAP.seen = true; if (MAP.own) intro(); } }, { threshold: 0.25 }).observe(mcv); else MAP.seen = true;
   function mapHover(e){
     if (!MAP.own || !MG) return; var r = mcv.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top, cell = pickCell(px, py), tip = $("#tip");
     var idx = cell ? cell.idx : -1, k = cell ? cell.k : -1;
     if (idx !== MAP.hov || k !== MAP.hi) { MAP.hov = idx; MAP.hi = k; mapDraw(); hiRow(k); }
     if (!cell) { tip.style.opacity = 0; return; }
-    var g = ST.board.gangs[k]; tip.innerHTML = "<b style=\"color:" + GC[k] + "\">$" + esc(g.sym) + "</b> · #" + g.rank + "<br>" + g.blocks + " blocks · " + (g.share * 100).toFixed(1) + "%<br>24h " + usd(g.v24) + " · 1h " + usd(g.v1);
+    var g = ST.board.gangs[k]; tip.innerHTML = crest(g.mint, GC[k], 22) + "<b style=\"color:" + GC[k] + "\">$" + esc(g.sym) + "</b> · #" + g.rank + "<br>" + g.blocks + " blocks · " + (g.share * 100).toFixed(1) + "%<br>24h " + usd(g.v24) + " · 1h " + usd(g.v1);
     tip.style.opacity = 1; var tx = Math.max(8, Math.min(r.width - 190, px + 16)), ty = Math.max(8, py - 70); tip.style.left = tx + "px"; tip.style.top = ty + "px";
   }
   mcv.addEventListener("pointermove", mapHover); mcv.addEventListener("click", mapHover);
   mcv.addEventListener("mouseleave", function(){ MAP.hov = -1; MAP.hi = -1; $("#tip").style.opacity = 0; mapDraw(); hiRow(-1); });
 }
 function hiRow(k){ $$("#board li").forEach(function(li){ li.classList.toggle("hi", +li.dataset.k === k); }); }
+
+/* ---------- gang crests: one generated emblem per coin, from its mint ---------- */
+function hstr(s){ var h = 2166136261; s = String(s || ""); for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+var CSHAPE = ["M20 2.5 35.5 8v12.5c0 9.2-7 15.3-15.5 17.2C11.5 35.8 4.5 29.7 4.5 20.5V8Z", "M20 2.5 35.5 11.3v17.4L20 37.5 4.5 28.7V11.3Z", "M13 3.5h14l9.5 9.5v14L27 36.5H13L3.5 27V13Z", "M6 3.5h28v31.5L20 28.2 6 35Z", "M20 3a17 17 0 1 0 .01 0Z"];
+var CGLYPH = ["M20 10.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L20 25.1l-5.9 3.2 1.3-6.5-4.9-4.5 6.6-.8Z", "M22.5 9 13 22h6.2l-2 9.5L27 18.3h-6.3Z", "M12 13.5l8 5.5 8-5.5v4.6l-8 5.5-8-5.5Zm0 7.4 8 5.5 8-5.5v4.6l-8 5.5-8-5.5Z", "M20 10l8 10-8 10-8-10Z", "M17.5 11h5v6.5H29v5h-6.5V29h-5v-6.5H11v-5h6.5Z", "M12 12h16v4H12Zm0 6h16v4H12Zm0 6h16v4H12Z", "M20 11l9.5 16.5h-19Z", "M20 12.5a7.5 7.5 0 1 1-.01 0Zm0 4a3.5 3.5 0 1 0 .01 0Z"];
+function crest(mint, col, sz){
+  var h = hstr(mint), s = CSHAPE[h % CSHAPE.length], g = CGLYPH[(h >>> 5) % CGLYPH.length], band = (h >>> 9) % 3;
+  return "<svg class=\"crest\" width=\"" + sz + "\" height=\"" + sz + "\" viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"" + s + "\" fill=\"" + col + "\"/>" +
+    (band ? "<clipPath id=\"cq" + (++crest.n) + "\"><path d=\"" + s + "\"/></clipPath>" + (band === 1 ? "<rect x=\"0\" y=\"0\" width=\"20\" height=\"40\" fill=\"rgba(0,0,0,.2)\"" : "<rect x=\"0\" y=\"0\" width=\"40\" height=\"17\" fill=\"rgba(255,255,255,.2)\"") + " clip-path=\"url(#cq" + crest.n + ")\"/>" : "") +
+    "<path d=\"" + s + "\" fill=\"none\" stroke=\"rgba(3,20,22,.45)\" stroke-width=\"2\"/><path d=\"" + g + "\" fill=\"#061317\" fill-rule=\"evenodd\"/></svg>";
+}
+crest.n = 0;
+function crestImg(mint, col, sz){ var i = new Image(); i.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(crest(mint, col, sz).replace("<svg ", "<svg xmlns=\"http://www.w3.org/2000/svg\" ")); return i; }
+
+/* ---------- street feed: every block that changes hands ---------- */
+var FEED = [], SNAPKEY = "turf.snap.v1";
+function lsGet(k){ try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function snapOf(b){ var m = {}; b.gangs.forEach(function(g){ m[g.mint] = [g.sym, g.blocks, g.rank]; }); return { t: b.t || Date.now(), m: m, king: b.gangs[0].mint }; }
+function diff(a, b){
+  var ev = [], k;
+  if (a.king !== b.king && b.m[b.king]) ev.push({ c: "k", mint: b.king, h: "<b>$" + esc(b.m[b.king][0]) + "</b> is the new king" + (a.m[a.king] ? ", over <b>$" + esc(a.m[a.king][0]) + "</b>" : "") });
+  for (k in b.m) { var n = b.m[k], o = a.m[k];
+    if (!o) ev.push({ c: "in", mint: k, h: "<b>$" + esc(n[0]) + "</b> walked onto the map with <b>" + n[1] + "</b> block" + (n[1] === 1 ? "" : "s") });
+    else if (n[1] !== o[1]) ev.push({ c: n[1] > o[1] ? "up" : "dn", mint: k, h: "<b>$" + esc(n[0]) + "</b> " + (n[1] > o[1] ? "took <b>" + (n[1] - o[1]) + "</b>" : "lost <b>" + (o[1] - n[1]) + "</b>") + " block" + (Math.abs(n[1] - o[1]) === 1 ? "" : "s") + " · now " + n[1] }); }
+  for (k in a.m) if (!b.m[k]) ev.push({ c: "out", mint: k, h: "<b>$" + esc(a.m[k][0]) + "</b> got pushed off the map" });
+  var rank = { k: 0, in: 1, out: 2, up: 3, dn: 4 }; ev.sort(function(x, y){ return rank[x.c] - rank[y.c]; });
+  return ev;
+}
+function feedUpdate(b){
+  if (!b || b.error || !b.gangs || !b.gangs.length) return;
+  var now = snapOf(b), first = !feedUpdate.live;
+  if (first) { feedUpdate.live = now; var old = lsGet(SNAPKEY);
+    if (old && old.m && now.t - old.t > 120000) { var ev = diff(old, now); if (ev.length) FEED.push({ sep: "since your last visit · " + ago(old.t) }); ev.slice(0, 14).forEach(function(e){ e.t = now.t; FEED.push(e); }); if (ev.length) heroWire(ev[0]); } }
+  else { var ev2 = diff(feedUpdate.live, now); feedUpdate.live = now; if (ev2.length) { FEED = ev2.map(function(e){ e.t = now.t; e.fresh = 1; return e; }).concat(FEED).slice(0, 40); heroWire(ev2[0]); } }
+  lsSet(SNAPKEY, now); feedRender();
+}
+function feedRender(){
+  var el = $("#feed"); if (!el) return;
+  if (!FEED.length) { el.innerHTML = "<li class=\"quiet\">watching the streets. every block that changes hands shows up here, live.</li>"; return; }
+  var g = ST.board && ST.board.gangs || [];
+  el.innerHTML = FEED.map(function(e){ if (e.sep) return "<li class=\"sep\">" + esc(e.sep) + "</li>";
+    var k = -1; g.forEach(function(x, i){ if (x.mint === e.mint) k = i; });
+    var ic = k >= 0 ? crest(e.mint, GC[k], 22) : "<i class=\"chip\" style=\"background:var(--dim)\"></i>";
+    return "<li class=\"" + e.c + (e.fresh ? " fresh" : "") + "\">" + ic + "<span>" + e.h + "</span><time>" + (e.fresh ? ago(e.t) : "") + "</time></li>"; }).join("");
+  FEED.forEach(function(e){ e.fresh = 0; });
+}
+
+/* ---------- gang card: a png to post ---------- */
+function gangCard(x, k){
+  var b = ST.board, g = b && b.gangs ? b.gangs : [], W2 = 1200, H2 = 630, cnv = document.createElement("canvas"); cnv.width = W2; cnv.height = H2; var c = cnv.getContext("2d");
+  var col = k >= 0 ? GC[k] : "#9cbcb3", gr = c.createLinearGradient(0, 0, W2, H2); gr.addColorStop(0, "#071a1f"); gr.addColorStop(1, "#0c2b2c"); c.fillStyle = gr; c.fillRect(0, 0, W2, H2);
+  var rg = c.createRadialGradient(330, 330, 20, 330, 330, 420); rg.addColorStop(0, rgba(col, 0.22)); rg.addColorStop(1, "rgba(0,0,0,0)"); c.fillStyle = rg; c.fillRect(0, 0, W2, H2);
+  c.strokeStyle = "rgba(190,255,230,.05)"; c.lineWidth = 1; for (var gx = 0; gx < W2; gx += 40) { c.beginPath(); c.moveTo(gx, 0); c.lineTo(gx, H2); c.stroke(); } for (var gy = 0; gy < H2; gy += 40) { c.beginPath(); c.moveTo(0, gy); c.lineTo(W2, gy); c.stroke(); }
+  // the city, this gang lit
+  var N = 12, own = g.length ? territory(g.map(function(z){ return z.blocks; })) : null, tw = 46, th = tw * 0.58, ox = 330, oy = 150, w = tw * 0.41, tt = th * 0.41, cells = [];
+  for (var j = 0; j < N; j++) for (var i = 0; i < N; i++) cells.push([i, j]);
+  cells.sort(function(a, d){ return (a[0] + a[1]) - (d[0] + d[1]) || a[0] - d[0]; });
+  c.fillStyle = "#12302f"; c.beginPath(); c.moveTo(ox, oy - th / 2); c.lineTo(ox + N * tw / 2, oy + (N - 1) * th / 2); c.lineTo(ox, oy + (2 * N - 1) * th / 2); c.lineTo(ox - N * tw / 2, oy + (N - 1) * th / 2); c.closePath(); c.fill();
+  cells.forEach(function(p){ var i = p[0], j = p[1], kk = own ? own[j * N + i] : -1, me = kk === k && k >= 0, cc = me ? col : "#1d4644", h = (me ? th * 1.5 : th * 0.35) * (0.6 + hash2(i * 7 + 3, j * 13 + 5) * 0.9), x0 = ox + (i - j) * tw / 2, y0 = oy + (i + j) * th / 2;
+    c.fillStyle = mix(cc, "#0d2f33", me ? 0.5 : 0.4); c.beginPath(); c.moveTo(x0 - w, y0 - h); c.lineTo(x0, y0 - h + tt); c.lineTo(x0, y0 + tt); c.lineTo(x0 - w, y0); c.closePath(); c.fill();
+    c.fillStyle = mix(cc, "#061317", me ? 0.66 : 0.55); c.beginPath(); c.moveTo(x0, y0 - h + tt); c.lineTo(x0 + w, y0 - h); c.lineTo(x0 + w, y0); c.lineTo(x0, y0 + tt); c.closePath(); c.fill();
+    c.fillStyle = cc; c.beginPath(); c.moveTo(x0, y0 - h - tt); c.lineTo(x0 + w, y0 - h); c.lineTo(x0, y0 - h + tt); c.lineTo(x0 - w, y0 - h); c.closePath(); c.fill();
+    if (me && h > th) { c.fillStyle = "rgba(255,232,160,.7)"; for (var r = 0; r < 2; r++) c.fillRect(x0 - w * 0.6, y0 - h + tt + 6 + r * 9, w * 0.18, 4); } });
+  // the words
+  var img = crestImg(x.mint, col, 120);
+  function words(){
+    try { c.drawImage(img, 690, 74, 96, 96); } catch (e) {}
+    c.textAlign = "left"; c.textBaseline = "alphabetic"; c.fillStyle = "#fdf4e3"; var sym = "$" + x.sym, fs = 96; c.font = "900 " + fs + "px Inter, sans-serif"; while (c.measureText(sym).width > 440 && fs > 40) { fs -= 4; c.font = "900 " + fs + "px Inter, sans-serif"; }
+    c.fillText(sym, 690, 250);
+    c.font = "700 20px JetBrains Mono, monospace"; c.fillStyle = col;
+    c.fillText(k >= 0 ? (k === 0 ? "KING OF THE CITY · #1" : "ON THE TURF MAP · #" + g[k].rank) : x.pump ? "NOT ON THE MAP YET" : "NOT A PUMP.FUN COIN", 694, 292);
+    c.fillStyle = "#fdf4e3"; c.font = "900 120px Inter, sans-serif";
+    c.fillText(k >= 0 ? String(g[k].blocks) : "0", 688, 430); var bw = c.measureText(k >= 0 ? String(g[k].blocks) : "0").width;
+    c.font = "800 30px Inter, sans-serif"; c.fillStyle = "#9cbcb3"; c.fillText("of 144 blocks", 700 + bw, 430);
+    c.font = "600 21px JetBrains Mono, monospace"; c.fillStyle = "#9cbcb3";
+    var l2 = k >= 0 ? (g[k].share * 100).toFixed(1) + "% of the city · 24h " + usd(g[k].v24) : g.length && x.pump ? "needs " + usd(Math.max(0, g[g.length - 1].v24 - x.v24)) + " more 24h volume" : "24h " + usd(x.v24);
+    c.fillText(l2, 694, 476);
+    c.fillStyle = "rgba(190,255,230,.14)"; c.fillRect(694, 520, 440, 1);
+    c.font = "900 34px Inter, sans-serif"; c.fillStyle = "#fdf4e3"; c.fillText("turf", 694, 572); c.font = "600 17px JetBrains Mono, monospace"; c.fillStyle = "#5e8079"; c.fillText(location.host + " · " + new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC", 778, 568);
+    cnv.toBlob(function(bl){ if (!bl) { toast("card unavailable"); return; } var a = document.createElement("a"); a.href = URL.createObjectURL(bl); a.download = "turf-" + String(x.sym).replace(/[^a-z0-9]/gi, "").toLowerCase() + ".png"; document.body.appendChild(a); a.click(); a.remove(); toast("gang card saved"); });
+  }
+  if (img.complete && img.naturalWidth) words(); else { img.onload = words; img.onerror = words; }
+}
 
 /* ---------- board ---------- */
 function trend(g){ var r = g.v24 > 0 ? g.v1 * 24 / g.v24 : 0; return r > 1.25 ? ["up", "▲ taking"] : r < 0.6 ? ["dn", "▼ losing"] : ["", "holding"]; }
@@ -684,22 +938,22 @@ function renderBoard(){
   var g = b.gangs, king = g[0];
   if (el) {
     el.innerHTML = g.map(function(x, i){ var tr = trend(x);
-      return "<li data-k=\"" + i + "\"" + (i === 0 ? " class=\"king\"" : "") + "><span class=\"rk\">" + x.rank + "</span><div class=\"nm\"><b><i class=\"chip\" style=\"background:" + GC[i] + "\"></i>$" + esc(x.sym) + " <span class=\"tr " + tr[0] + "\">" + tr[1] + "</span></b><div class=\"sh\"><i style=\"width:" + (x.share * 100 / Math.max(0.0001, g[0].share)).toFixed(1) + "%;background:" + GC[i] + "\"></i></div></div><div class=\"bl\"><b>" + x.blocks + "</b><small>" + usd(x.v24) + "</small></div></li>";
+      return "<li data-k=\"" + i + "\"" + (i === 0 ? " class=\"king\"" : "") + "><span class=\"rk\">" + x.rank + "</span><div class=\"nm\"><b>" + crest(x.mint, GC[i], 26) + "$" + esc(x.sym) + (i === 0 ? " <span class=\"crown\">♛ king</span>" : "") + " <span class=\"tr " + tr[0] + "\">" + tr[1] + "</span></b><div class=\"sh\"><i style=\"width:" + (x.share * 100 / Math.max(0.0001, g[0].share)).toFixed(1) + "%;background:" + GC[i] + "\"></i></div></div><div class=\"bl\"><b>" + x.blocks + "</b><small>" + usd(x.v24) + "</small></div></li>";
     }).join("");
     $$("#board li").forEach(function(li){ var k = +li.dataset.k;
       li.addEventListener("mouseenter", function(){ MAP.hi = k; MAP.hov = -1; mapDraw(); hiRow(k); });
       li.addEventListener("mouseleave", function(){ MAP.hi = -1; mapDraw(); hiRow(-1); });
-      li.addEventListener("click", function(){ window.open("https://www.geckoterminal.com/solana/pools/" + g[k].pool, "_blank", "noopener"); }); });
+      li.addEventListener("click", function(){ var m = $("#mint"); if (!m) return; m.value = g[k].mint; lookup(g[k].mint); $("#lookup").scrollIntoView({ behavior: RM ? "auto" : "smooth" }); }); });
   }
   setK("mapup", "<i class=\"dot\" style=\"margin-right:6px\"></i>live · counted " + ago(b.t));
-  setK("king", "$" + esc(king.sym)); $$("[data-k-chip=king]").forEach(function(e){ e.style.background = GC[0]; });
+  setK("king", "$" + esc(king.sym)); $$("[data-k-chip=king]").forEach(function(e){ e.outerHTML = crest(king.mint, GC[0], 20).replace("class=\"crest\"", "class=\"crest\" data-k-chip=\"king\""); }); setK("cd-king", "$" + esc(king.sym));
   setK("s-king", "$" + esc(king.sym)); setK("s-kings", (king.share * 100).toFixed(1) + "% of the map"); setK("s-kb", String(king.blocks)); setK("s-vol", usd(b.total));
-  var tw = $("#tape"); if (tw) { var one = g.map(function(x, i){ var tr = trend(x); return "<span><i class=\"chip\" style=\"background:" + GC[i] + "\"></i><b>$" + esc(x.sym) + "</b> " + x.blocks + " blocks <span class=\"tr " + tr[0] + "\">" + tr[1] + "</span></span>"; }).join(""); tw.innerHTML = one + one; }
+  var tw = $("#tape"); if (tw) { var one = g.map(function(x, i){ var tr = trend(x); return "<span>" + crest(x.mint, GC[i], 18) + "<b>$" + esc(x.sym) + "</b> " + x.blocks + " blocks <span class=\"tr " + tr[0] + "\">" + tr[1] + "</span></span>"; }).join(""); tw.innerHTML = one + one; }
   var last = g[g.length - 1];
   if (b.next) setK("next", "first one out: <b>$" + esc(b.next.sym) + "</b> · 24h " + usd(b.next.v24) + " · needs <b>" + usd(Math.max(0, last.v24 - b.next.v24)) + "</b> more to take <b>$" + esc(last.sym) + "</b>'s spot");
   else setK("next", "no gang in line right now.");
   setK("l-12", "$" + esc(last.sym)); setK("l-12v", usd(last.v24)); setK("l-13", b.next ? "$" + esc(b.next.sym) + " · " + usd(b.next.v24) : "—"); setK("l-rate", b.total > 0 ? (144 * 1e6 / b.total).toFixed(2) : "—");
-  mapUpdate();
+  mapUpdate(); feedUpdate(b); bandGangs(); exDraw();
 }
 
 /* ---------- look up a coin ---------- */
@@ -711,14 +965,15 @@ function lookup(m){
     if (x.error) { res.innerHTML = "<div class=\"card\"><span class=\"no\">" + esc(x.error) + "</span></div>"; return; }
     if (!x.found) { res.innerHTML = "<div class=\"card\"><span class=\"no\">no pools found for that address.</span></div>"; return; }
     var b = ST.board, g = b && b.gangs ? b.gangs : [], k = -1, i; for (i = 0; i < g.length; i++) if (g[i].mint === x.mint) k = i;
-    var head = "<div class=\"top\">" + (k >= 0 ? "<i class=\"chip\" style=\"width:16px;height:16px;background:" + GC[k] + "\"></i>" : "") + "<b>$" + esc(x.sym) + "</b><span class=\"tag2" + (k >= 0 ? " in" : "") + "\">" + (k >= 0 ? "on the map · #" + g[k].rank : x.pump ? "not on the map" : "not a pump.fun coin") + "</span></div>";
+    var head = "<div class=\"top\">" + crest(x.mint, k >= 0 ? GC[k] : "#5e8079", 44) + "<b>$" + esc(x.sym) + "</b><span class=\"tag2" + (k >= 0 ? " in" : "") + "\">" + (k >= 0 ? "on the map · #" + g[k].rank : x.pump ? "not on the map" : "not a pump.fun coin") + "</span></div>";
     var kv = "<div class=\"kv\"><span>24h volume</span><b>" + usd(x.v24) + "</b><span>1h volume</span><b>" + usd(x.v1) + "</b><span>price</span><b>" + usd(x.price) + "</b><span>pool</span><b><a href=\"https://www.geckoterminal.com/solana/pools/" + esc(x.pool) + "\" target=\"_blank\" rel=\"noopener\">" + short(x.pool) + "</a></b></div>";
     var msg;
     if (k >= 0) msg = "it holds <b>" + g[k].blocks + " blocks</b>, " + (g[k].share * 100).toFixed(1) + "% of the map." + (k > 0 ? " it needs <b>" + usd(g[0].v24 - g[k].v24) + "</b> more 24h volume to pass the king." : " it's the king.");
     else if (!x.pump) msg = "only pump.fun coins (the bonding curve and PumpSwap) can fight for the city.";
     else if (g.length) msg = "it needs <b>" + usd(Math.max(0, g[g.length - 1].v24 - x.v24)) + "</b> more 24h volume to beat <b>$" + esc(g[g.length - 1].sym) + "</b> and take a block.";
     else msg = "the map is unavailable right now.";
-    res.innerHTML = "<div class=\"card\">" + head + kv + "<div class=\"msg\">" + msg + "</div></div>";
+    res.innerHTML = "<div class=\"card\">" + head + kv + "<div class=\"msg\">" + msg + "</div><div class=\"acts2\"><button class=\"pill lime sm\" id=\"gcard\">download gang card</button><a class=\"pill ghost sm\" href=\"https://www.geckoterminal.com/solana/pools/" + esc(x.pool) + "\" target=\"_blank\" rel=\"noopener\">chart</a></div></div>";
+    on("#gcard", "click", function(){ gangCard(x, k); });
   }, function(){ res.innerHTML = "<div class=\"card\"><span class=\"no\">lookup unavailable right now</span></div>"; });
 }
 on("#find", "click", function(){ lookup($("#mint").value); });
@@ -744,6 +999,7 @@ function ledger(){
   t.innerHTML = p.rows.map(function(r){ var what = r.n >= 1 && r.d < 0 ? "payout" : r.d > 0 ? "fees in" : "out";
     return "<tr><td><a href=\"" + scan("tx", r.s) + "\" target=\"_blank\" rel=\"noopener\">" + ago(r.t * 1000) + "</a></td><td>" + what + "</td><td>" + (r.n || "—") + "</td><td class=\"" + (r.d > 0 ? "yes" : r.d < 0 ? "no" : "") + "\">" + (r.d > 0 ? "+" : "") + r.d.toFixed(4) + "</td></tr>"; }).join("");
 }
+function wcol(m, i){ var g = ST.board && ST.board.gangs || []; for (var j = 0; j < g.length; j++) if (g[j].mint === m) return GC[j]; return i === 0 ? "#c6ff3d" : "#5e8079"; }
 function renderWinner(){
   var w = ST.winner, t = $("#wtop");
   if (!w || w.error) { setK("w-sym", "—"); setK("w-line", esc((w && w.error) || "winner unavailable right now")); setK("s-last", "—"); if (t) t.innerHTML = "<tr><td colspan=\"3\" class=\"emptyrow\">unavailable right now.</td></tr>"; return; }
@@ -751,7 +1007,7 @@ function renderWinner(){
   if (!w.winner) { setK("w-sym", "—"); setK("w-line", "no sunday candles found for the busiest pools."); setK("s-last", "—"); if (t) t.innerHTML = "<tr><td colspan=\"3\" class=\"emptyrow\">no candles found.</td></tr>"; return; }
   setK("w-sym", "$" + esc(w.winner.sym)); setK("w-line", "<b style=\"color:var(--ink)\">" + usd(w.winner.vol) + "</b> traded on sunday " + esc(w.sunday) + " UTC. holders of $TURF who also hold $" + esc(w.winner.sym) + " split the pot.");
   setK("s-last", "$" + esc(w.winner.sym)); setK("s-lasts", usd(w.winner.vol) + " on sunday");
-  if (t) t.innerHTML = w.top.map(function(x, i){ return "<tr" + (i === 0 ? " class=\"win\"" : "") + "><td>" + (i + 1) + "</td><td><a href=\"https://www.geckoterminal.com/solana/pools/" + esc(x.pool) + "\" target=\"_blank\" rel=\"noopener\">$" + esc(x.sym) + "</a></td><td>" + usd(x.vol) + "</td></tr>"; }).join("");
+  if (t) t.innerHTML = w.top.map(function(x, i){ return "<tr" + (i === 0 ? " class=\"win\"" : "") + "><td>" + (i + 1) + "</td><td><a class=\"gl\" href=\"https://www.geckoterminal.com/solana/pools/" + esc(x.pool) + "\" target=\"_blank\" rel=\"noopener\">" + crest(x.mint, wcol(x.mint, i), 20) + "$" + esc(x.sym) + "</a></td><td>" + usd(x.vol) + "</td></tr>"; }).join("");
 }
 function renderMarket(){ var m = ST.market, c = ST.cfg || {}; var url = m && m.pair && m.pair.url ? m.pair.url : c.mint ? "https://dexscreener.com/solana/" + c.mint : null;
   $$("[data-chart]").forEach(function(a){ if (url) a.href = url; else a.removeAttribute("href"); }); }
@@ -852,9 +1108,159 @@ var io = "IntersectionObserver" in window ? new IntersectionObserver(function(es
 $$(".rv").forEach(function(e){ if (io) io.observe(e); else e.classList.add("vis"); });
 function sweep(){ $$(".rv:not(.vis)").forEach(function(e){ if (e.getBoundingClientRect().top < innerHeight) e.classList.add("vis"); }); }
 window.addEventListener("hashchange", sweep); window.addEventListener("scroll", function(){ clearTimeout(sweep.h); sweep.h = setTimeout(sweep, 80); }, { passive: true });
+(function(){ var el = $("#intro"); if (!el) return; var seen = null; try { seen = sessionStorage.getItem("turf.intro"); sessionStorage.setItem("turf.intro", "1"); } catch (e) {}
+  if (seen || RM) { el.parentNode.removeChild(el); return; }
+  var own = territory([16, 15, 14, 13, 12, 11, 11, 10, 10, 10, 11, 11]), h = "";
+  for (var i = 0; i < 144; i++) h += "<i style=\"animation-delay:" + Math.round(Math.hypot(i % 12 - 5.5, (i / 12 | 0) - 5.5) * 30 + Math.random() * 70) + "ms;background:" + GC[own[i]] + "\"></i>";
+  $("#introgrid").innerHTML = h;
+  setTimeout(function(){ el.classList.add("out"); setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 700); }, 1300);
+})();
+/* ---------- hero wire: the latest block that changed hands pops over the city ---------- */
+function heroWire(e){
+  var el = $("#wire"); if (!el || !e) return; var g = ST.board && ST.board.gangs || [], k = -1;
+  g.forEach(function(x, i){ if (x.mint === e.mint) k = i; });
+  el.innerHTML = (k >= 0 ? crest(e.mint, GC[k], 20) : "") + "<span>" + e.h + "</span>";
+  el.classList.remove("show"); void el.offsetWidth; el.classList.add("show");
+  clearTimeout(heroWire.h); heroWire.h = setTimeout(function(){ el.classList.remove("show"); }, 7000);
+}
+
+/* ---------- text band: the live gangs' names roll by ---------- */
+function bandGangs(){
+  var el = $("#bandgangs"), g = ST.board && ST.board.gangs; if (!el || !g || !g.length) return;
+  el.dataset.base = g.map(function(x, i){ return "<span style=\"color:" + GC[i] + "\">$" + esc(x.sym) + "</span><i>✦</i>"; }).join("");
+  bandFill();
+}
+function bandFill(){ $$(".band .row").forEach(function(r){ var base = r.dataset.base || r.innerHTML, h = base, n = 1; r.dataset.base = base; while (h.length < 2600 || n < 3) { h += base; n++; } r.innerHTML = h; r._bw = r.scrollWidth / n; }); }
+
+/* ---------- how it works: a small city acts out each step ---------- */
+var EX = { s: 0, t0: performance.now(), cv: $("#explcv"), vis: false, hold: 0, last: 0 }, EXC = gilbert(6, 6);
+var EXCAP = ["12 coins. 12 gangs. the busiest walk in.", "volume splits the blocks, every minute.", "sunday 23:59:59 UTC: most blocks is king.", "the pot pays $TURF holders who rode the king."];
+function exCounts(){
+  var g = ST.board && ST.board.gangs, sh = g && g.length ? g.map(function(x){ return Math.max(0, x.share || 0); }) : [12, 10, 9, 8, 7, 6, 6, 5, 4, 4, 3, 3], n = sh.length, sum = sh.reduce(function(a, b){ return a + b; }, 0) || 1, free = 36 - n;
+  var raw = sh.map(function(v){ return v / sum * free; }), out = raw.map(function(v){ return 1 + Math.floor(v); }), left = 36 - out.reduce(function(a, b){ return a + b; }, 0);
+  raw.map(function(v, i){ return [v - Math.floor(v), i]; }).sort(function(a, b){ return b[0] - a[0]; }).slice(0, Math.max(0, left)).forEach(function(p){ out[p[1]]++; });
+  return out;
+}
+function exBox(c, x, y, w, tt, h, col, a){
+  c.globalAlpha = a; c.fillStyle = mix(col, "#0d2f33", 0.5); c.beginPath(); c.moveTo(x - w, y - h); c.lineTo(x, y - h + tt); c.lineTo(x, y + tt); c.lineTo(x - w, y); c.closePath(); c.fill();
+  c.fillStyle = mix(col, "#061317", 0.66); c.beginPath(); c.moveTo(x, y - h + tt); c.lineTo(x + w, y - h); c.lineTo(x + w, y); c.lineTo(x, y + tt); c.closePath(); c.fill();
+  c.fillStyle = col; c.beginPath(); c.moveTo(x, y - h - tt); c.lineTo(x + w, y - h); c.lineTo(x, y - h + tt); c.lineTo(x - w, y - h); c.closePath(); c.fill(); c.globalAlpha = 1;
+}
+function exDraw(){
+  var cv2 = EX.cv; if (!cv2) return; var f = canvasFit(cv2), c = f.c, W3 = f.w, H3 = f.h, now = performance.now(), p = (now - EX.t0) / 1000, s = EX.s, N = 6;
+  c.clearRect(0, 0, W3, H3);
+  var tw = Math.min(W3 * 0.7 / N, H3 * 0.62 / (N * 0.58 + 1.6)), th = tw * 0.58, ox = W3 * (s === 3 ? 0.4 : 0.5), oy = H3 * 0.6 - 2.5 * th, w = tw * 0.41, tt = th * 0.41;
+  c.fillStyle = "#12302f"; c.beginPath(); c.moveTo(ox, oy - th / 2); c.lineTo(ox + N * tw / 2, oy + (N - 1) * th / 2); c.lineTo(ox, oy + (2 * N - 1) * th / 2); c.lineTo(ox - N * tw / 2, oy + (N - 1) * th / 2); c.closePath(); c.fill();
+  c.fillStyle = "#0b2226"; c.beginPath(); c.moveTo(ox - N * tw / 2, oy + (N - 1) * th / 2); c.lineTo(ox, oy + (2 * N - 1) * th / 2); c.lineTo(ox, oy + (2 * N - 1) * th / 2 + th * 0.5); c.lineTo(ox - N * tw / 2, oy + (N - 1) * th / 2 + th * 0.5); c.closePath(); c.fill();
+  c.fillStyle = "#07181b"; c.beginPath(); c.moveTo(ox, oy + (2 * N - 1) * th / 2); c.lineTo(ox + N * tw / 2, oy + (N - 1) * th / 2); c.lineTo(ox + N * tw / 2, oy + (N - 1) * th / 2 + th * 0.5); c.lineTo(ox, oy + (2 * N - 1) * th / 2 + th * 0.5); c.closePath(); c.fill();
+  var cnt = exCounts(), own = [], n = 0, i, j, k;
+  for (i = 0; i < 36; i++) own.push(-1);
+  for (k = 0; k < cnt.length; k++) for (i = 0; i < cnt[k] && n < 36; i++, n++) own[EXC[n][1] * N + EXC[n][0]] = k;
+  var first = {}; for (n = 0; n < 36; n++) { var o = own[EXC[n][1] * N + EXC[n][0]]; if (first[o] == null) first[o] = n; }
+  var order = []; for (j = 0; j < N; j++) for (i = 0; i < N; i++) order.push([i, j]);
+  order.sort(function(a, b){ return (a[0] + a[1]) - (b[0] + b[1]) || a[0] - b[0]; });
+  var kingC = [], busy = s === 2 || s === 3;
+  order.forEach(function(q){ var i2 = q[0], j2 = q[1], idx = j2 * N + i2, kk = own[idx], cn = EXC.findIndex ? EXC.findIndex(function(z){ return z[0] === i2 && z[1] === j2; }) : 0, col = GC[kk % GC.length] || "#1d4644";
+    var x = ox + (i2 - j2) * tw / 2, y = oy + (i2 + j2) * th / 2, base = th * (0.55 + hash2(i2 * 7 + 3, j2 * 13 + 5) * 0.9), h, a = 1, d;
+    if (s === 0) { var tower = first[kk] === cn; d = Math.max(0, Math.min(1, (p - kk * 0.08) / 0.6)); if (d < 1) busy = true; h = tower ? th * 2.1 * ease(d) : 0; if (!tower) { exBox(c, x, y, w, tt, 1, "#1d4644", 1); return; } }
+    else if (s === 1) { d = Math.max(0, Math.min(1, (p - cn * 0.03) / 0.5)); if (d < 1) busy = true; h = Math.max(1, base * ease(d)); }
+    else { var king = kk === 0; h = king ? base * 1.55 + Math.sin(p * 3 + cn) * 1.5 : base * 0.8; a = king ? 1 : 0.32; if (king) kingC.push([x, y - h]); }
+    exBox(c, x, y, w, tt, h, col, a);
+    if (s === 0 && h > th) { c.fillStyle = "#fdf4e3"; c.fillRect(x - 0.5, y - h - th * 1.3, 1.5, th * 1.3); c.fillStyle = col; c.beginPath(); c.moveTo(x + 1, y - h - th * 1.3); c.lineTo(x + 1 + th * 0.7, y - h - th * 1.12); c.lineTo(x + 1, y - h - th * 0.94); c.closePath(); c.fill(); } });
+  var g = ST.board && ST.board.gangs;
+  if (kingC.length) { var mx = 0, my = 1e9; kingC.forEach(function(z){ mx += z[0]; my = Math.min(my, z[1]); }); mx /= kingC.length; my -= 24 + Math.sin(p * 2.4) * 3;
+    var cs = 11; c.fillStyle = "#ffe14d"; c.beginPath(); c.moveTo(mx - cs, my + cs * 0.7); c.lineTo(mx - cs, my - cs * 0.3); c.lineTo(mx - cs * 0.45, my + cs * 0.15); c.lineTo(mx, my - cs * 0.7); c.lineTo(mx + cs * 0.45, my + cs * 0.15); c.lineTo(mx + cs, my - cs * 0.3); c.lineTo(mx + cs, my + cs * 0.7); c.closePath(); c.fill();
+    if (g && g[0]) { c.font = "800 12px JetBrains Mono, monospace"; c.textAlign = "center"; c.fillStyle = GC[0]; c.fillText("$" + g[0].sym, mx, my - 18); }
+    if (s === 3) { var hx = W3 * 0.84, rows = 6;
+      for (var r = 0; r < rows; r++) { var hy = H3 * 0.18 + r * (H3 * 0.1), lit = ((p * 2.2) % rows) > r ? 1 : 0.35; c.globalAlpha = lit; c.fillStyle = "#143238"; c.beginPath(); if (c.roundRect) c.roundRect(hx - 34, hy - 11, 68, 22, 11); else c.rect(hx - 34, hy - 11, 68, 22); c.fill(); c.fillStyle = "#c6ff3d"; c.beginPath(); c.arc(hx - 21, hy, 5, 0, 7); c.fill(); c.fillStyle = "#9cbcb3"; c.fillRect(hx - 10, hy - 2, 32, 4); c.globalAlpha = 1; }
+      for (var q = 0; q < 7; q++) { var u = ((p * 0.55 + q / 7) % 1), tx = hx - 36, ty = H3 * 0.18 + (q % rows) * (H3 * 0.1), bx = mx + (tx - mx) * u, by = my + (ty - my) * u - Math.sin(u * Math.PI) * H3 * 0.16;
+        c.globalAlpha = Math.sin(u * Math.PI); c.fillStyle = "#c6ff3d"; c.beginPath(); c.arc(bx, by, 6, 0, 7); c.fill(); c.fillStyle = "#23400a"; c.font = "800 8px Inter, sans-serif"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("◎", bx, by + 0.5); c.globalAlpha = 1; } } }
+  if (s === 2) { c.font = "800 13px JetBrains Mono, monospace"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillStyle = "#fdf4e3"; var lab = "SUN 23:59:59 UTC", lw2 = c.measureText(lab).width + 26, ly2 = H3 - 26;
+    c.fillStyle = "rgba(6,19,23,.8)"; c.beginPath(); if (c.roundRect) c.roundRect(W3 / 2 - lw2 / 2, ly2 - 15, lw2, 30, 15); else c.rect(W3 / 2 - lw2 / 2, ly2 - 15, lw2, 30); c.fill(); c.strokeStyle = "rgba(198,255,61,.5)"; c.stroke(); c.fillStyle = "#c6ff3d"; c.fillText(lab, W3 / 2, ly2 + 1); }
+  var cap = $("#explcap"); if (cap && cap.textContent !== EXCAP[s]) cap.textContent = EXCAP[s];
+  EX.busy = busy;
+}
+function exSet(s, hold){ if (s === EX.s && !hold) return; EX.s = s; EX.t0 = performance.now(); if (hold) EX.hold = performance.now() + 9000;
+  $$("#rail .st").forEach(function(b){ b.classList.toggle("on", +b.dataset.s === s); }); $$(".edots i").forEach(function(d, i){ d.classList.toggle("on", i === s); }); exDraw(); }
+if (EX.cv) {
+  $$("#rail .st").forEach(function(b){ b.addEventListener("click", function(){ exSet(+b.dataset.s, true); }); b.addEventListener("mouseenter", function(){ if (matchMedia("(hover:hover)").matches) exSet(+b.dataset.s, true); }); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function(es){ EX.vis = es[0].isIntersecting; if (EX.vis) EX.t0 = performance.now(); }).observe(EX.cv); else EX.vis = true;
+}
+
+/* ---------- motion: one loop for the cursor, the band, the dust and the explainer ---------- */
+var FINE = window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches, PX = -100, PY = -100, RX = -100, RY = -100, SY = window.scrollY, VEL = 0, SKEW = 0, BX = 0;
+var ring = null, amb = null, ambc = null, DUST = [], ambW = 0, ambH = 0;
+if (FINE && !RM) { ring = document.createElement("div"); ring.id = "ring"; document.body.appendChild(ring);
+  document.addEventListener("pointermove", function(e){ if (e.pointerType !== "mouse") return; PX = e.clientX; PY = e.clientY; var t = e.target.closest ? e.target : null;
+    ring.classList.toggle("big", !!(t && t.closest("a,button,summary,input,[data-tilt],#board li")));
+    ring.classList.toggle("off", !!(t && t.closest("#mapcv,#explcv"))); }, { passive: true });
+  document.addEventListener("pointerdown", function(){ ring.classList.add("down"); }); document.addEventListener("pointerup", function(){ ring.classList.remove("down"); });
+}
+if (!RM) { amb = document.createElement("canvas"); amb.id = "amb"; amb.setAttribute("aria-hidden", "true"); document.body.insertBefore(amb, document.body.firstChild); ambc = amb.getContext("2d");
+  var ambFit = function(){ var d = Math.min(1.5, window.devicePixelRatio || 1); ambW = innerWidth; ambH = innerHeight; amb.width = ambW * d; amb.height = ambH * d; ambc.setTransform(d, 0, 0, d, 0, 0); };
+  ambFit(); window.addEventListener("resize", ambFit);
+  var R9 = rng(9); for (var di = 0; di < (innerWidth < 700 ? 24 : 50); di++) DUST.push({ x: R9() * innerWidth, y: R9() * innerHeight, r: 0.8 + R9() * 1.8, v: 5 + R9() * 12, ph: R9() * 6, col: GC[(R9() * GC.length) | 0], a: 0.18 + R9() * 0.4 }); }
+function fxLoop(now){
+  requestAnimationFrame(fxLoop); if (document.hidden) return;
+  var dt = Math.min(0.05, (now - (fxLoop.last || now)) / 1000); fxLoop.last = now;
+  if (ring) { RX += (PX - RX) * 0.2; RY += (PY - RY) * 0.2; ring.style.transform = "translate(" + RX + "px," + RY + "px)"; }
+  var y = window.scrollY; VEL = y - SY; SY = y; SKEW += (Math.max(-8, Math.min(8, VEL * 0.35)) - SKEW) * 0.12; BX += dt * 26;
+  $$(".band .row").forEach(function(r){ var dir = +r.dataset.v || 1, bw2 = r._bw || 2000, x = -((BX + y * 0.35) % bw2); r.style.transform = "translateX(" + (dir > 0 ? x : -bw2 - x) + "px) skewX(" + (-SKEW * dir).toFixed(2) + "deg)"; });
+  if (ambc && (now - (fxLoop.amb || 0)) > 33) { fxLoop.amb = now; ambc.clearRect(0, 0, ambW, ambH); ambc.globalCompositeOperation = "lighter";
+    DUST.forEach(function(d){ d.y -= d.v * 0.033; d.x += Math.sin(now / 1800 + d.ph) * 0.15; if (d.y < -10) { d.y = ambH + 10; d.x = Math.random() * ambW; }
+      var yy = ((d.y - y * 0.04) % ambH + ambH) % ambH, tw2 = 0.6 + 0.4 * Math.sin(now / 700 + d.ph * 3);
+      ambc.globalAlpha = d.a * tw2; ambc.fillStyle = d.col; ambc.beginPath(); ambc.arc(d.x, yy, d.r, 0, 7); ambc.fill(); ambc.globalAlpha = d.a * tw2 * 0.25; ambc.beginPath(); ambc.arc(d.x, yy, d.r * 4, 0, 7); ambc.fill(); });
+    ambc.globalAlpha = 1; ambc.globalCompositeOperation = "source-over"; }
+  if (EX.cv && EX.vis) { if (!RM && now > EX.hold && now - EX.t0 > 4200) exSet((EX.s + 1) % 4); if ((EX.busy || now - EX.last > 500) && now - EX.last > 33) { EX.last = now; exDraw(); } }
+}
+requestAnimationFrame(fxLoop);
+
+/* ---------- scroll: hero drifts away, nav tucks, progress fills ---------- */
+var heroOver = $(".hero .over"), heroHud = $(".hero .hud"), prog = $("#prog"), lastY = window.scrollY;
+function onScroll(){ var y = window.scrollY, vh = innerHeight;
+  if (heroOver && !RM && y < vh * 1.2) { var o = Math.max(0, 1 - y / (vh * 0.75)); heroOver.style.transform = "translateY(" + (y * 0.26) + "px)"; heroOver.style.opacity = o; if (heroHud) heroHud.style.opacity = o; }
+  if (prog) prog.style.transform = "scaleX(" + Math.min(1, y / Math.max(1, document.documentElement.scrollHeight - vh)) + ")";
+  if (nav) { var open = $("#links").classList.contains("open"); if (y > 280 && y > lastY + 4 && !open) nav.classList.add("tuck"); else if (y < lastY - 4 || y < 280) nav.classList.remove("tuck"); }
+  lastY = y; }
+window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+/* ---------- headings rise out of a mask, word by word; kickers scramble in ---------- */
+$$("h2").forEach(function(h){ var out = [], n = 0;
+  Array.prototype.slice.call(h.childNodes).forEach(function(nd){
+    if (nd.nodeType === 3) nd.textContent.split(/(\s+)/).forEach(function(wd){ if (!wd) return; if (/^\s+$/.test(wd)) out.push(" "); else out.push("<span class=\"w\"><span style=\"--i:" + (n++) + "\">" + esc(wd) + "</span></span>"); });
+    else if (nd.nodeName === "BR") out.push("<br>");
+    else out.push("<span class=\"w\"><span style=\"--i:" + (n++) + "\">" + nd.outerHTML + "</span></span>"); });
+  h.innerHTML = out.join(""); h.classList.add("split"); });
+var SCR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$·";
+function scramble(e){ var fin = e.textContent, t0 = performance.now(); if (RM || e.children.length) return;
+  (function st(now){ var p = Math.min(1, (now - t0) / 650), keep = Math.floor(fin.length * p), s2 = "";
+    for (var i = 0; i < fin.length; i++) s2 += i < keep || fin[i] === " " ? fin[i] : SCR[(Math.random() * SCR.length) | 0];
+    e.textContent = s2; if (p < 1) requestAnimationFrame(st); else e.textContent = fin; })(t0); }
+if ("IntersectionObserver" in window) { var sio = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) { scramble(en.target); sio.unobserve(en.target); } }); }, { rootMargin: "0px 0px -10% 0px" });
+  $$(".eyebrow").forEach(function(e){ if (!e.children.length) sio.observe(e); });
+  var bw = $("#bigword"); if (bw) new IntersectionObserver(function(es){ bw.classList.toggle("on", es[0].isIntersecting); }, { threshold: 0.3 }).observe(bw); }
+
+/* ---------- pointer toys: card light, tilt, magnets, ripple ---------- */
+if (FINE && !RM) {
+  document.addEventListener("pointermove", function(e){ var el = e.target.closest && e.target.closest(".card,.feedbox,.st,.faq details,.mapbox,.expl"); if (!el) return; var r = el.getBoundingClientRect(); el.style.setProperty("--gx", (e.clientX - r.left) + "px"); el.style.setProperty("--gy", (e.clientY - r.top) + "px"); }, { passive: true });
+  $$(".pots .card,.look > .card,.cd div").forEach(function(el){ el.setAttribute("data-tilt", "");
+    el.addEventListener("pointermove", function(e){ var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y2 = (e.clientY - r.top) / r.height - 0.5; el.style.transform = "perspective(900px) rotateX(" + (-y2 * 5).toFixed(2) + "deg) rotateY(" + (x * 6).toFixed(2) + "deg) translateY(-2px)"; });
+    el.addEventListener("pointerleave", function(){ el.style.transform = ""; }); });
+  $$(".pill:not(.sm)").forEach(function(el){
+    el.addEventListener("pointermove", function(e){ var r = el.getBoundingClientRect(); el.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1) + "px," + ((e.clientY - r.top - r.height / 2) * 0.28).toFixed(1) + "px)"; });
+    el.addEventListener("pointerleave", function(){ el.style.transform = ""; }); });
+}
+document.addEventListener("pointerdown", function(e){ var el = e.target.closest && e.target.closest(".pill"); if (!el || RM) return; var r = el.getBoundingClientRect(), s3 = document.createElement("span"), d2 = Math.max(r.width, r.height) * 2.2;
+  s3.className = "rip"; s3.style.cssText = "width:" + d2 + "px;height:" + d2 + "px;left:" + (e.clientX - r.left - d2 / 2) + "px;top:" + (e.clientY - r.top - d2 / 2) + "px"; el.appendChild(s3); setTimeout(function(){ s3.remove(); }, 650); });
+
+/* ---------- faq opens with a little height animation ---------- */
+$$(".faq details").forEach(function(d){ var sm = d.querySelector("summary"); sm.addEventListener("click", function(e){ if (RM || !d.animate) return; e.preventDefault();
+  var h0 = d.offsetHeight; if (!d.open) { d.open = true; var h1 = d.offsetHeight; d.animate({ height: [h0 + "px", h1 + "px"] }, { duration: 300, easing: "cubic-bezier(.2,.8,.2,1)" }); }
+  else { var a2 = d.animate({ height: [h0 + "px", sm.offsetHeight + "px"] }, { duration: 240, easing: "ease" }); a2.onfinish = function(){ d.open = false; }; } }); });
+bandFill(); exDraw();
 clock(); setInterval(clock, 1000);
 resize(); start(); mapResize(); ctaArt();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ mapDraw(); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ mapDraw(); bandFill(); exDraw(); });
 J("/api/config").then(function(c){ ST.cfg = c; }, function(){ ST.cfg = { mint: null, pot: null, min: 100000, gangMin: 10 }; }).then(function(){
   setK("ca", ST.cfg.mint || "—"); setK("potw", ST.cfg.pot || "—"); links();
   every("board", 60000); every("pot", 60000); every("market", 30000); every("winner", 600000); if (PAGE === "pot") every("payout", 180000);
